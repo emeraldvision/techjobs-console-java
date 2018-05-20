@@ -55,7 +55,7 @@ public class JobData {
     }
 
     /**
-     * Returns results of search the jobs data by key/value, using
+     * Returns results of searching the jobs data by key/value, using
      * inclusion of the search term.
      *
      * For example, searching for employer "Enterprise" will include results
@@ -78,6 +78,36 @@ public class JobData {
 
             if (aValue.contains(value)) {
                 jobs.add(row);
+            }
+        }
+
+        return jobs;
+    }
+
+    /**
+     * Returns results of searching the jobs data in all columns using "value" as the search term
+     *
+     * @param value String search term to find in the jobs listing
+     * @return ArrayList of the jobs that meet the search criteria
+     */
+
+    // Search for value within all columns of all rows of job data. Won't duplicate jobs.
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+
+            for (String aValue : row.values()) {
+
+                if (aValue.contains(value)) {
+                    if (!jobs.contains(row)) {
+                        jobs.add(row);
+                    }
+                }
             }
         }
 

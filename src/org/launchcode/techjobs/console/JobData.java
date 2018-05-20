@@ -76,7 +76,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (findWithoutCase(value, aValue)) {
                 jobs.add(row);
             }
         }
@@ -103,7 +103,7 @@ public class JobData {
 
             for (String aValue : row.values()) {
 
-                if (aValue.contains(value)) {
+                if (findWithoutCase(value, aValue)) {
                     if (!jobs.contains(row)) {
                         jobs.add(row);
                     }
@@ -112,6 +112,19 @@ public class JobData {
         }
 
         return jobs;
+    }
+
+    /**
+     * Returns true if needle is found in haystack, else false, without regard for case of either
+     *
+     * @param needle String search term to be found within haystack
+     * @param haystack String to be searched for needle
+     * @return
+     */
+    public static boolean findWithoutCase(String needle, String haystack) {
+        needle = needle.toLowerCase();
+        haystack = haystack.toLowerCase();
+        return haystack.contains(needle);
     }
 
     /**

@@ -51,7 +51,9 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        return allJobs;
+        ArrayList<HashMap<String, String>> allJobsCopy = new ArrayList<>(allJobs);
+
+        return allJobsCopy;
     }
 
     /**
@@ -119,7 +121,7 @@ public class JobData {
      *
      * @param needle String search term to be found within haystack
      * @param haystack String to be searched for needle
-     * @return
+     * @return boolean of whether needle is found in haystack
      */
     public static boolean findWithoutCase(String needle, String haystack) {
         needle = needle.toLowerCase();

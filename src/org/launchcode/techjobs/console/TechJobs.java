@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Comparator;
 
 /**
  * Created by LaunchCode
@@ -46,7 +47,8 @@ public class TechJobs {
 
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
-                    // Print list of skills, employers, etc
+                    // Print alphabetized list of skills, employers, etc
+                    results.sort(Comparator.naturalOrder());
                     for (String item : results) {
                         System.out.println(item);
                     }
